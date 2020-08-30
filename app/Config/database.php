@@ -70,7 +70,7 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
+		'login' => 'root',
 		'password' => 'gloire',
 		'database' => 'maki',
 		'prefix' => '',
