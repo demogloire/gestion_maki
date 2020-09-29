@@ -25,12 +25,16 @@
     <?php echo $this->Html->css('vendor/wow/animate'); ?>
     <?php echo $this->Html->css('vendor/css-hamburgers/hamburgers.min'); ?>
     <?php echo $this->Html->css('vendor/slick/slick'); ?>
-    <?php echo $this->Html->css('vendor/select2/select2.min'); ?>
     <?php echo $this->Html->css('vendor/perfect-scrollbar/perfect-scrollbar'); ?>
     <?php echo $this->Html->css('theme'); ?>
     <?php echo $this->Html->css('style'); ?>
-    <?php echo $this->fetch('css'); ?>
-    
+    <?php echo $this->Html->css('select2/select2'); ?>
+
+    <?php echo $this->Html->script('tinymce/jquery.tinymce.min'); ?>
+    <?php echo $this->Html->script('tinymce/tinymce.min'); ?>
+    <script>tinymce.init({selector:'textarea',height: 400});</script>
+    <?php echo $this->fetch('script'); ?>
+   
 
 </head>
 
@@ -464,8 +468,8 @@
     <?php echo $this->Html->script('vendor/circle-progress/circle-progress.min'); ?>
     <?php echo $this->Html->script('vendor/perfect-scrollbar/perfect-scrollbar'); ?>
     <?php echo $this->Html->script('vendor/chartjs/Chart.bundle.min'); ?>
-    <?php echo $this->Html->script('vendor/select2/select2.min'); ?>
     <?php echo $this->Html->script('main'); ?>
+    <?php echo $this->Html->script('select2/select2'); ?>
     <?php echo $this->fetch('script'); ?>
 
     <?php echo $this->fetch('modale'); ?>

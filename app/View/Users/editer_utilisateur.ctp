@@ -8,7 +8,7 @@
                            
                             <ul class="list-unstyled list-inline au-breadcrumb__list">
                                 <li class="list-inline-item active">
-                                    <a href="{{url_for('user.index')}}">Utilisateur</a>
+                                    <a href="">Utilisateur</a>
                                 </li>
                                 <li class="list-inline-item seprate">
                                     <span>/</span>
