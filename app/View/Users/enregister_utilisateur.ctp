@@ -1,5 +1,5 @@
 <section class="au-breadcrumb ">
-    <div class="section__content section__content--p30">
+    <div class="section__content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -8,7 +8,7 @@
                             
                             <ul class="list-unstyled list-inline au-breadcrumb__list">
                                 <li class="list-inline-item active">
-                                    <a href="{{url_for('user.index')}}">Dashboard</a>
+                                    <a href="">Dashboard</a>
                                 </li>
                                 <li class="list-inline-item seprate">
                                     <span>/</span>
@@ -28,7 +28,7 @@
 </section>
 
 <div class="main-content">
-    <div class="section__content section__content--p30">
+    <div class="section__content">
         <div class="container-fluid">
         <div class="row">
                 <?php foreach ($utilisateur as $utilisateur): current($utilisateur);?>

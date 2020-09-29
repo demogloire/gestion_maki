@@ -26,18 +26,19 @@ class UsersController extends AppController{
           'prenom'=>ucfirst($data["Users"]["prenom"]),
           'role'=>$data["Users"]["role"],
           'username'=>$data["Users"]["username"],
-          'password'=>sha1($data["Users"]["password"]),  
+          'password'=>$this->Auth->password($data["Users"]["password"]),  
           "statut"=>true
         ))){
           $this->Session->setFlash("Succès d'enregistrement",'succes');
-          $this->redirect(array('action'=>'enregister_utilisateur'));
+          return $this->redirect(array('action'=>'enregister_utilisateur'));
         }else{
           $this->Session->setFlash("Tous le champs en alpha numerique avec 4 caractères au minimu sauf mot de passe 6 caractères",'danger');
+          return $this->redirect(array('action'=>'enregister_utilisateur'));
         }
 
       }else{
         $this->Session->setFlash("Ce nom d'utilisateur existe",'danger');
-        $this->redirect(array('action'=>'enregister_utilisateur'));
+        return $this->redirect(array('action'=>'enregister_utilisateur'));
       }
 
     }
@@ -118,7 +119,7 @@ class UsersController extends AppController{
           'username'=>$data["User"]["username"],
         ))){
           $this->Session->setFlash("Modification avec succès",'succes');
-          $this->redirect(array('action'=>'enregister_utilisateur'));
+          return $this->redirect(array('action'=>'enregister_utilisateur'));
 
         }
 
@@ -141,10 +142,34 @@ class UsersController extends AppController{
 
 
 
-  public function login(){
+public function login(){
 
-    $this->layout ='login';
-  }
+$this->layout ='login';
+
+//Vérification de la connextion
+if($this->Session->read('Auth.User.id') !=null){
+  return $this->redirect(array('action'=>'enregister_utilisateur'));
+}
+
+if ($this->request->is('post')) {
+  //Requête de la connexion
+  $data=$this->request->data;
+   
+  if ($this->Auth->login()){
+    return $this->redirect($this->Auth->redirectUrl('/dashbord'));
+  }else{
+    $utilisateur=$this->User->find('all',array('conditions'=>array('username'=>$data['User']['username'])));
+    if(!empty($utilisateur)){
+      $this->Session->setFlash("Mot de passe incorrect",'danger');
+      return $this->redirect(array('action'=>'login'));
+    }else{
+      $this->Session->setFlash("Nom d'utilisateur incorrect",'danger');
+      return $this->redirect(array('action'=>'login'));
+    }
+  }}
+
+
+}
 
   public function logout()
   {

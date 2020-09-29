@@ -28,6 +28,7 @@
     <?php echo $this->Html->css('vendor/select2/select2.min'); ?>
     <?php echo $this->Html->css('vendor/perfect-scrollbar/perfect-scrollbar'); ?>
     <?php echo $this->Html->css('theme'); ?>
+    <?php echo $this->Html->css('style'); ?>
     <?php echo $this->fetch('css'); ?>
     
 

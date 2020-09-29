@@ -31,4 +31,31 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+  public $components = array('Session',
+  'Cookie',
+  'Auth'=>array(
+    'authenticate'=>array(
+      'Form'=>array(
+        'scope'=>array('User.statut'=>1),
+        'fields' => array(
+                    'username' => 'username', // 'username' par défaut
+                    'password' => 'password'  // 'password' par défaut
+                )
+      )
+    ),
+    'authorize'=>array('Controller')
+  ));
+
+  public function isAuthorized($user=null){
+    // Admin peut accéder à toute action
+      return true;
+  }
+  public function beforFilter(){
+    parent::beforFilter();
+  }
+
+
+
+
 }
