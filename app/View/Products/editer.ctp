@@ -17,7 +17,7 @@
                                 <li class="list-inline-item seprate">
                                     <span>/</span>
                                 </li>
-                                <li class="list-inline-item">Ajouter produit</li>
+                                <li class="list-inline-item">Modifier produit</li>
                             </ul>
                         </div>
                     </div>

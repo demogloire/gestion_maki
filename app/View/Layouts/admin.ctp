@@ -14,12 +14,14 @@
     <title><?php if ($title !=NULL){ echo $title; }else{echo "Gestion Maki";}?></title>
 
     <!-- Fontfaces CSS-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
     <?php echo $this->Html->css('css/font-face'); ?>
     <?php echo $this->Html->css('vendor/font-awesome-4.7/css/font-awesome.min'); ?>
-    <?php echo $this->Html->css('css/font-face'); ?>
     <?php echo $this->Html->css('vendor/font-awesome-5/css/fontawesome-all.min'); ?>
-    <?php echo $this->Html->css('vendor/bootstrap-4.1/bootstrap.min'); ?>
     <?php echo $this->Html->css('vendor/mdi-font/css/material-design-iconic-font.min'); ?>
+    
+    <?php echo $this->Html->css('vendor/bootstrap-4.1/bootstrap.min'); ?>
+
     <?php echo $this->Html->css('vendor/animsition/animsition.min'); ?>
     <?php echo $this->Html->css('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min'); ?>
     <?php echo $this->Html->css('vendor/wow/animate'); ?>
