@@ -29,9 +29,9 @@
     <?php echo $this->Html->css('vendor/slick/slick'); ?>
     <?php echo $this->Html->css('vendor/perfect-scrollbar/perfect-scrollbar'); ?>
     <?php echo $this->Html->css('theme'); ?>
-    <?php echo $this->Html->css('style'); ?>
+    <?php echo $this->Html->css('style'); ?>   
     <?php echo $this->Html->css('select2/select2'); ?>
-
+    <?php echo $this->Html->css('datepicker'); ?>
     <?php echo $this->Html->script('tinymce/jquery.tinymce.min'); ?>
     <?php echo $this->Html->script('tinymce/tinymce.min'); ?>
     <script>tinymce.init({selector:'textarea',height: 400});</script>
@@ -472,6 +472,7 @@
     <?php echo $this->Html->script('vendor/chartjs/Chart.bundle.min'); ?>
     <?php echo $this->Html->script('main'); ?>
     <?php echo $this->Html->script('select2/select2'); ?>
+    <?php echo $this->Html->script('datepicker'); ?>
     <?php echo $this->fetch('script'); ?>
 
     <?php echo $this->fetch('modale'); ?>
