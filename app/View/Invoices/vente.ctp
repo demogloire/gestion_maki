@@ -42,7 +42,7 @@
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th>Action</th>
+                                                                <th class="center">Action</th>
                                                                 <th>Produit</th>
                                                                 <th class="center">Qté</th>
                                                                 <th class="right">P.U</th>
@@ -52,7 +52,7 @@
                                                         <tbody>
                                                         <?php foreach ($vente as $vente):?>
                                                             <tr>
-                                                                <td class="left strong">Iphone 10X</td>
+                                                                <td class="center">  <?php echo $this->Html->link($this->Html->tag('i', ' ', array('class' => 'fas  fa-times')), array('controller' => 'invoices', 'action' => 'supprimer', $vente['Sale']['id']), array('class'=>"item", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"",'data-original-title'=>"Supprimer", 'escape' => false)); ?></td>
                                                                 <td class="left"><?php echo $vente['Product']['nom_produit']; ?></td>
                                                                 <td class="center"><?php echo $vente['Sale']['qte']; ?></td>
                                                                 <td class="right"><?php echo $vente['Sale']['prix_unit']; ?></td>
@@ -138,7 +138,7 @@
                                                 
                                                 <div class="text-center">
                                                     <button id="submit" name="submit" type="submit" class="btn btn-outline-success"><i class="fas fa-shopping-cart"></i>Ajouter</button>
-                                                    <?php echo $this->Html->link('Terminer',array('controller' =>'warehouses','action'=>'index_depot'), array('class'=>'btn btn-outline-danger')); ?> 
+                                                    <?php echo $this->Html->link('Terminer',array('controller' =>'invoices','action'=>'index'), array('class'=>'btn btn-outline-danger')); ?> 
                                                 </div>
                                                 
                                                 </form>

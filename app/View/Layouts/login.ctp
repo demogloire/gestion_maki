@@ -34,11 +34,11 @@
     <div class="page-wrapper">
         <div class="page-content--bge5">
             <div class="container">
-                <div class="login-wrap" style="margin-top:12px;">
+                <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="images/icon/logo.png" alt="CoolAdmin">
+                                GESTION MAKI
                             </a>
                         </div>
                         <div class="login-form">

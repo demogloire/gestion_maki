@@ -32,7 +32,7 @@
                                                     <td><?php echo $factures['User']['prenom']; ?></td>
                                                     <td> 
                                                     <div class="table-data-feature">
-                                                        <?php echo $this->Html->link($this->Html->tag('i', ' ', array('class' => 'fas  fa-times')), array('controller' => 'users', 'action' => 'logout'), array('class'=>"item", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"",'data-original-title'=>"Supprimer", 'escape' => false)); ?>
+                                                        <?php echo $this->Html->link($this->Html->tag('i', ' ', array('class' => 'fas  fa-times')), array('controller' => 'invoices', 'action' => 'annuler', $factures['Invoice']['id']), array('class'=>"item", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"",'data-original-title'=>"Supprimer", 'escape' => false)); ?>
                                                         <?php echo $this->Html->link($this->Html->tag('i', ' ', array('class' => 'fas fa-print')), array('controller' => 'users', 'action' => 'logout'), array('class'=>"item", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"",'data-original-title'=>"Imprimer", 'escape' => false)); ?>
                                                         <?php echo $this->Html->link($this->Html->tag('i', ' ', array('class' => 'fas fa-file')), array('controller' => 'users', 'action' => 'logout'), array('class'=>"item", 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"",'data-original-title'=>"PDF", 'escape' => false)); ?>
                                                     </div>

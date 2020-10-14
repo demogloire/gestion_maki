@@ -1027,6 +1027,142 @@ class InvoicesController extends AppController{
     $this->set('vente',$this->Sale->find('all',array('conditions'=>array('invoice_id'=>$fact_id))));
   }
 
+  #Statut du produit
+  public function supprimer($id){
+    $this->layout ='admin';
+    $title="Ets MAKI |Vente";
+
+    $this->loadModel('Product');
+    $this->loadModel('Warehouse');
+    $this->loadModel('Expiration');
+    $this->loadModel('Value');
+    $this->loadModel('Sale');
+
+    #Vérification de l'ID dans le paramtere 
+    if(!$id){
+      return $this->redirect(array('action'=>'vente'));
+    }
+    #Id du produit
+    $id=$id; 
+    $valeur_du_stock=$this->Value->find('all',array('conditions'=>array('sale_id'=>$id)));
+    //Produit ID
+    $produit_id=$valeur_du_stock['0']['Value']['product_id'];
+    //Produit encours de vente
+    $verification_produit=$this->Warehouse->find('all',array('conditions'=>array(
+      'product_id'=>(int)$produit_id,'solde'=>true,'boutique'=>true
+    )));
+    $this->Warehouse->id=(int)$verification_produit['0']['Warehouse']['id'];
+    if($this->Warehouse->save(array('solde'=>false))){
+      if($this->Warehouse->save(array(
+        'qte'=>(int)$valeur_du_stock['0']['Value']['qte'],
+        'prix_unit'=>(float)$valeur_du_stock['0']['Value']['prix_unit'],
+        'valeur_total'=>(float)$valeur_du_stock['0']['Value']['montant'],
+        'qte_total'=>(int)$valeur_du_stock['0']['Value']['qte']+(int)$verification_produit['0']['Warehouse']['qte_total'],
+        'valeur'=>(float)$valeur_du_stock['0']['Value']['montant']+(float)$verification_produit['0']['Warehouse']['valeur'],
+        'annul_facture'=>true,
+        'solde'=>true,
+        'boutique'=>true,
+        'vente'=>false,
+        'transfert'=>false,
+        'correction'=>false,
+        'erreur_stockage'=>false,
+        'stockage'=>false,
+        'product_id'=>$produit_id,
+        'user_id'=>$this->Session->read('Auth.User.id'),
+        'date_op'=>date('Y-m-d')
+      ))){
+        $this->Invoice->id=(int)$valeur_du_stock['0']['Invoice']['id'];
+        if($this->Invoice->save(array('valeur'=>(float)$valeur_du_stock['0']['Invoice']['valeur']-(float)$valeur_du_stock['0']['Sale']['valeur']))){
+          $this->Sale->delete((int)$valeur_du_stock['0']['Sale']['id']);
+          $this->Value->delete((int)$valeur_du_stock['0']['Value']['id']);
+
+          $this->Session->setFlash("Supprimer sur la facture",'danger');
+          return $this->redirect(array('action'=>'vente'));
+        }
+      }
+    }
+  }
+
+
+  public function annuler($id){
+    $this->layout ='admin';
+    $title="Ets MAKI |Vente";
+
+    $this->loadModel('Product');
+    $this->loadModel('Warehouse');
+    $this->loadModel('Expiration');
+    $this->loadModel('Value');
+    $this->loadModel('Sale');
+
+    #Vérification de l'ID dans le paramtere 
+    if(!$id){
+      return $this->redirect(array('action'=>'vente'));
+    }
+    #Id du produit
+    $id=$id; 
+
+    $fac_encours=$this->Invoice->findById($id);
+    
+    foreach ($fac_encours['Value'] as $value) {
+      
+      foreach ($fac_encours['Sale'] as $values) {
+      $verification_produit=$this->Warehouse->find('all',array('conditions'=>array(
+        'product_id'=>$values['product_id'],'solde'=>true,'boutique'=>true
+      )));
+
+      $this->Warehouse->id=(int)$verification_produit['0']['Warehouse']['id'];
+      if($this->Warehouse->save(array('solde'=>false))){
+        if($this->Warehouse->save(array(
+          'qte'=>(int)$value['qte'],
+          'prix_unit'=>(float)$value['prix_unit'],
+          'valeur_total'=>(float)$value['montant'],
+          'qte_total'=>(int)$value['qte']+(int)$verification_produit['0']['Warehouse']['qte_total'],
+          'valeur'=>(float)$value['montant']+(float)$verification_produit['0']['Warehouse']['valeur'],
+          'annul_facture'=>true,
+          'solde'=>true,
+          'boutique'=>true,
+          'vente'=>false,
+          'transfert'=>false,
+          'correction'=>false,
+          'erreur_stockage'=>false,
+          'stockage'=>false,
+          'product_id'=>$produit_id,
+          'user_id'=>$this->Session->read('Auth.User.id'),
+          'date_op'=>date('Y-m-d')
+        ))){
+          $this->Sale->delete($values['id']);
+          $this->Value->delete($value['id']);
+
+          
+          
+        }
+
+      }   
+    }
+  }
+  $this->Invoice->delete($id);
+  $this->Session->setFlash("Supprimer avec succès",'success');
+  return $this->redirect(array('action'=>'index'));
+  
+  }
+
+  public function rapports(){
+    $this->layout ='admin';
+    $title="Ets MAKI |Vente";
+
+    $this->loadModel('Product');
+    $this->loadModel('Warehouse');
+    $this->loadModel('Expiration');
+    $this->loadModel('Value');
+    $this->loadModel('Sale');
+    $date='%'.date('Y-m-d').'%';
+    var_dump($date);
+    var_dump($this->Invoice->find('all', array('conditions'=>array('Invoice.date_op LIKE'=>$date))));
+    die();
+
+    
+  
+  }
 
 }
 
