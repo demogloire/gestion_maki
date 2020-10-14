@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label class="control-label mb-1">Qté</label>
                                     <?php
-                                        echo $this->Form->input('qte',array('placeholder' => '10.5','class'=>'form-control','label'=>false));
+                                        echo $this->Form->input('qte',array('placeholder' => '10','class'=>'form-control','label'=>false));
                                     ?>
                                 </div>
                             </div> 
@@ -54,17 +54,11 @@
                                 </div>
                             </div> 
                         </div>
-
-
-                
-                
-                
-                
                 
                 <div class="text-center">
                     <button id="submit" name="submit" type="submit" class="btn btn-outline-success">Stocker</button>
                     <?php echo $this->Html->link('Annuler',array
-                                ('controller' =>'users','action'=>'enregister_utilisateur'), array('class'=>'btn btn-outline-danger')); ?> 
+                                ('controller' =>'warehouses','action'=>'index_depot'), array('class'=>'btn btn-outline-danger')); ?> 
                 </div>
                 
                 </form>
@@ -88,7 +82,7 @@
      $('#datepicker').datepicker({
         uiLibrary: 'bootstrap4',
         icons: {
-            rightIcon: '<i class="la la-calendar"></i>'
+            rightIcon: '<i class="fas fa-calendar"></i>'
         },
         format: 'yyyy-mm-dd'
     });

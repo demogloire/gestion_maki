@@ -174,6 +174,7 @@ if ($this->request->is('post')) {
   public function logout()
   {
     $this->Auth->logout();
+    $this->Session->delete('facture_id');
     return $this->redirect('/');
   }
 
